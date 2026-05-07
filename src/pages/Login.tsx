@@ -3,6 +3,7 @@ import {zodResolver}  from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {z} from "zod"
 import Button from "../components/ui/Button";
+import { Link } from "react-router-dom";
 
 
 // schema validasi
@@ -30,6 +31,14 @@ const onSubmit = (data: any) => {
                     <Button label="Login" variant="primary" className="w-full mt-2" />
                 </div>
             </form>
+
+
+            <p>
+                Belum punya akun?
+                <Link to="/register" className="text-[#852e4e] hover:underline ml-1">
+                    Daftar sekarang
+                </Link>
+            </p>
         </div>
     );
 };

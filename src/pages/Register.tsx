@@ -1,40 +1,97 @@
-import {zodResolver}  from "@hookform/resolvers/zod";  
-import { useForm } from "react-hook-form";
-import {z} from "zod"
 import FormInput from "../components/FormInput";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import Button from "../components/ui/Button";
+import { Link } from "react-router-dom";
 
+
+// schema validasi
 const schema = z.object({
-    nama:z.string().min(1, "Nama harus diisi"),
-    email:z.string().min(8, "Email minimal 8 karakter"),
-    password:z.string().min(8, "Password minimal 8 karakter"),
-    password_confirm:z.string().min(8, "Password confirm harus diisi")
-})
+  nama: z.string().min(1, "Nama harus diisi"),
 
-export default function Register(){
-const {register,  handleSubmit, formState:{errors}} = useForm({
-        resolver: zodResolver(schema)
-    });
+  email: z
+    .string()
+    .min(1, "Email harus diisi")
+    .email("Format email tidak valid"),
 
-const onSubmit = (data: any) => {
-  console.log(data);
-  alert("Register berhasil!");
-};
-    return (
+  password: z
+    .string()
+    .min(8, "Password minimal 8 karakter"),
+
+  password_confirm: z
+    .string()
+    .min(8, "Konfirmasi password minimal 8 karakter"),
+});
+
+export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        
+        <FormInput
+          text="Nama"
+          type="text"
+          name="nama"
+          register={register}
+          error={errors.nama?.message}
+        />
+
+        <FormInput
+          text="Email"
+          type="text"
+          name="email"
+          register={register}
+          error={errors.email?.message}
+        />
+
+        <FormInput
+          text="Password"
+          type="password"
+          name="password"
+          register={register}
+          error={errors.password?.message}
+        />
+
+        <FormInput
+          text="Konfirmasi Password"
+          type="password"
+          name="password_confirm"
+          register={register}
+          error={errors.password_confirm?.message}
+        />
+
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormInput text="nama" type="text" name="nama" register={register} error={errors.nama?.message} />
-                <FormInput text="email" type="text" name="email" register={register} error={errors.email?.message} />
-                <FormInput text="password" type="text" name="password" register={register} error={errors.password?.message} />
-                <FormInput text="password_confirm" type="text" name="password_confirm" register={register} error={errors.password_confirm                       ?.message} />
-
-                <div>
-                    <button
-                    type="submit"
-                    className="w-full bg-pink-600 text-white py-3 rounded-md mt-2 hover:bg-pink-700 transition"
-            >Register
-</button>
-                </div>
-            </form>
+          <Button
+            label="Register"
+            variant="primary"
+            className="w-full mt-2"
+            type="submit"
+          />
         </div>
-    )
+      </form>
+
+      <p className="mt-4 text-sm text-slate-600">
+        Sudah punya akun?
+        <Link
+          to="/login"
+          className="text-[#852e4e] hover:underline ml-1"
+        >
+          Login sekarang
+        </Link>
+      </p>
+    </div>
+  );
 }

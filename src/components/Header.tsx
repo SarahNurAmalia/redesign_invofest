@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Home, Info, Users, HelpCircle, Menu, X } from "lucide-react";
+import { Home, Info, Users, HelpCircle, Menu, X, Trophy, Laptop, Mic, UserCircle } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 type MenuItem = {
   label: string;
@@ -8,15 +9,21 @@ type MenuItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { label: "Beranda", href: "#hero", icon: <Home size={18} /> },
-  { label: "Tentang Event", href: "#cards", icon: <Info size={18} /> },
-  { label: "Pembicara", href: "#speaker", icon: <Users size={18} /> },
-  { label: "FAQ", href: "#collapse", icon: <HelpCircle size={18} /> },
+  { label: "Beranda", href: "/", icon: <Home size={18} /> },
+  { label: "Competition", href: "/competition", icon: <Trophy size={18} /> },
+  { label: "Seminar", href: "/seminar", icon: <Users size={18} /> },
+  { label: "Workshop", href: "/workshop", icon: <Laptop size={18} /> },
+  { label: "Talkshow", href: "/talkshow", icon: <Mic size={18} /> },
+  { label: "", href: "/login", icon: <UserCircle size={18} /> },
 ];
 
 const Header: React.FC = () => {
   const [active, setActive] = useState<string>("#hero");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+
+  const activeStyle = "text-[#852e4e]";
+const defaultStyle = "text-slate-600 hover:text-[#852e4e]";
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -34,28 +41,20 @@ const Header: React.FC = () => {
         
         <nav className="hidden md:flex items-center gap-4">
           {menuItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setActive(item.href)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition ${
-                active === item.href
-                  ? "bg-pink-100 text-pink-600 font-medium"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-pink-600"
-              }`}
-            >
-              {item.icon}
-              {item.label}
-            </a>
+            <NavLink to={item.href} className={({ isActive }) => 
+            `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium
+        transition-all duration-200 ${isActive ? activeStyle : defaultStyle}`}>
+              
+              {item.icon && <span className="w-5 h-5">{item.icon}</span>}
+              <span>{item.label}
+              </span>
+
+            </NavLink>
           ))}
         </nav>
 
         
-        <div className="hidden md:block">
-          <button className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 hover:scale-105 transition">
-            Daftar
-          </button>
-        </div>
+        
 
         
         <button
@@ -79,8 +78,8 @@ const Header: React.FC = () => {
               }}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition ${
                 active === item.href
-                  ? "bg-pink-100 text-pink-600 font-medium"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-pink-600"
+                  ? "bg-[#F5E9EF] text-[#852e4e] font-medium"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-[#852e4e]"
               }`}
             >
               {item.icon}
@@ -89,8 +88,8 @@ const Header: React.FC = () => {
           ))}
 
           
-          <button className="mt-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">
-            Daftar
+          <button className="mt-2 bg-[#852e4e] text-white px-4 py-2 rounded-lg hover:bg-[#6f2641] transition">
+          Daftar
           </button>
         </div>
       )}

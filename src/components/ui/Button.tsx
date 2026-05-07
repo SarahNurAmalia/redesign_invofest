@@ -36,11 +36,12 @@ export const Button: React.FC<ButtonProps> = ({
 
   
   const variants = {
-    primary:
-      "bg-pink-600 text-white hover:bg-pink-700 hover:scale-105 active:scale-95 shadow-sm hover:shadow-md",
-    outline:
-      "border border-pink-600 text-pink-600 hover:bg-pink-50 hover:scale-105 active:scale-95",
-  };
+  primary:
+    "bg-[#852e4e] text-white hover:bg-[#6f2641] hover:scale-105 active:scale-95 shadow-sm hover:shadow-md",
+
+  outline:
+    "border border-[#852e4e] text-[#852e4e] hover:bg-[#F5E9EF] hover:scale-105 active:scale-95",
+};
 
   
   const disabledStyle = "opacity-50 cursor-not-allowed hover:scale-100";
