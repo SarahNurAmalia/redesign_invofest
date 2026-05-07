@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Home, Info, Users, HelpCircle, Menu, X, Trophy, Laptop, Mic, UserCircle } from "lucide-react";
+import { Home,  Users, Menu, X, Trophy, Laptop, Mic, UserCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 type MenuItem = {
