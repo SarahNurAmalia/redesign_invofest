@@ -14,7 +14,7 @@ const FormInput: React.FC<FormInputProps> = ({text, type, name, register, error}
         <div className="flex flex-col gap-2 mb-3">
             <LabelInput text={text} title={name} />
             <InputText type={type} name= {name} error={error} {...register(name)} /> 
-        {error && <p className="text-red-700 text-sm">{error}</p>}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         </div>
     );
 };

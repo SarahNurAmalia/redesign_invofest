@@ -9,6 +9,9 @@ import Talkshow from "./pages/Talkshow";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import Workshop from "./pages/Workshop";
+import EventList from "./pages/Dashboard/categories/Events/EventList";
+import CreateCategory from "./pages/Dashboard/categories/CreateCategory";
+import SpeakerList from "./pages/Dashboard/categories/speaker/SpeakerList";
 
 function App() {
    return  (
@@ -23,6 +26,10 @@ function App() {
          <Route path="/talkshow" element={<Talkshow />} />
          <Route path="/workshop" element={<Workshop />} />
 
+
+         <Route path="/category" element={<CreateCategory />} />
+         <Route path="/events" element={<EventList />} />
+         <Route path="/speakers" element={<SpeakerList />} />
          </Route>
          {/* auth page */  }
          <Route element={<AuthLayout />}>

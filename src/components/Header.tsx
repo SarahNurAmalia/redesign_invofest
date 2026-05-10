@@ -54,9 +54,6 @@ const defaultStyle = "text-slate-600 hover:text-[#852e4e]";
         </nav>
 
         
-        
-
-        
         <button
           className="md:hidden"
           onClick={() => setIsOpen(!isOpen)}

@@ -44,7 +44,7 @@ export default function Register() {
         <FormInput
           text="Nama"
           type="text"
-          name="nama"
+          name="Nama"
           register={register}
           error={errors.nama?.message}
         />
@@ -52,7 +52,7 @@ export default function Register() {
         <FormInput
           text="Email"
           type="text"
-          name="email"
+          name="Email"
           register={register}
           error={errors.email?.message}
         />
@@ -60,7 +60,7 @@ export default function Register() {
         <FormInput
           text="Password"
           type="password"
-          name="password"
+          name="Password"
           register={register}
           error={errors.password?.message}
         />
@@ -68,7 +68,7 @@ export default function Register() {
         <FormInput
           text="Konfirmasi Password"
           type="password"
-          name="password_confirm"
+          name="Password Confirm"
           register={register}
           error={errors.password_confirm?.message}
         />
