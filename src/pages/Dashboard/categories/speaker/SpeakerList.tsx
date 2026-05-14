@@ -1,98 +1,63 @@
-import FormInput from "../../../../components/FormInput";
+import { Link } from "react-router-dom";
 import Button from "../../../../components/ui/Button";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const schema = z.object({
-  nama: z.string().min(1, "Nama speaker harus diisi"),
-
-  role: z.string().min(1, "Role harus diisi"),
-
-  foto: z.string().min(1, "Foto harus dipilih"),
-});
 
 export default function SpeakerList() {
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(schema),
-  });
+    const speakers = [
+        {
+            nama: "Sowam Habibi",
+            role: "UI/UX Designer"
+        },
+        {
+            nama: "Sarah Wijaya",
+            role: "Frontend Developer"
+        },
+        {
+            nama: "Dery Agung Triyadi",
+            role: "AI Engineer"
+        }
+    ];
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+    return (
+        <div className="bg-white rounded-3xl shadow-lg p-8">
 
-  return (
-    <div className="max-w-xl mx-auto bg-white shadow-md rounded-2xl p-8">
+            {/* HEADER */}
+            <div className="flex items-center justify-between mb-8">
 
-      <h1 className="text-3xl font-bold text-[#852e4e] mb-6">
-        Create New Speaker
-      </h1>
+                <h1 className="text-4xl font-bold text-[#852e4e]">
+                    Speaker List
+                </h1>
 
-      <form
-        className="space-y-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+                <Link to="/dashboard/speaker/create">
+                    <Button
+                        label="Create Speaker"
+                        variant="primary"
+                        className="px-6 py-3"
+                    />
+                </Link>
 
-        
-        <FormInput
-          text="Nama Speaker"
-          type="text"
-          name="Nama"
-          register={register}
-          error={errors.nama?.message}
-        />
+            </div>
 
-        
-        <FormInput
-          text="Role"
-          type="text"
-          name="Role"
-          register={register}
-          error={errors.role?.message}
-        />
+            {/* LIST */}
+            <div className="space-y-4">
 
-        
-        <div className="flex flex-col gap-2">
+                {speakers.map((speaker, index) => (
+                    <div
+                        key={index}
+                        className="border border-slate-200 rounded-2xl p-5 hover:shadow-md transition"
+                    >
+                        <h2 className="text-2xl font-semibold text-[#852e4e]">
+                            {speaker.nama}
+                        </h2>
 
-          <label className="font-medium">
-            Foto
-          </label>
+                        <p className="text-slate-600 mt-1">
+                            {speaker.role}
+                        </p>
+                    </div>
+                ))}
 
-          <input
-            type="file"
-            {...register("foto")}
-            className={`border p-2 rounded-md outline-none transition-all
-            ${
-              errors.foto
-                ? "border-red-500 bg-red-50"
-                : "border-gray-300 bg-white"
-            }
-            focus:border-[#852e4e]`}
-          />
-
-          {errors.foto && (
-            <p className="text-red-500 text-sm">
-              {errors.foto.message}
-            </p>
-          )}
+            </div>
 
         </div>
-
-        
-        <Button
-          label="Simpan"
-          variant="primary"
-          className="w-full"
-          type="submit"
-        />
-
-      </form>
-    </div>
-  );
+    );
 }
